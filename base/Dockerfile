@@ -10,6 +10,7 @@ RUN apt-get update \
         micro \
         nano \
         pipx \
+        python3-dev \
         python3-pip \
         python3-poetry \
         python3-venv \

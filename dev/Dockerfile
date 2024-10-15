@@ -1,4 +1,4 @@
-FROM ghcr.io/statisticsnorway/docker-rpython-base:1.0
+FROM ghcr.io/statisticsnorway/docker-rpython-base:0.9.2
 
 LABEL org.opencontainers.image.source=https://github.com/statisticsnorway/docker-rpython
 LABEL org.opencontainers.image.description="Container for running both python and R."

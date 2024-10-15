@@ -18,17 +18,34 @@ From GitHub:
 * ssb-metodebiblioteket
 * ssb-ssb-fellesr
 
+## Releases
+
+The docker images are published as GitHub Packages on
+[this page](https://github.com/statisticsnorway/docker-rpython/pkgs/container/docker-rpython-base). 
+
 ## Usage
+
 ```shell
 docker pull ghcr.io/statisticsnorway/docker-rpython-base:latest  # Image for use in GitHub Actions
 docker pull ghcr.io/statisticsnorway/docker-rpython-dev:latest   # Latest dev-image
 ```
 
-docker pull 
-
 ## Build docker images
 
-### GitHub Action image (base)
+### Automatically
+
+Both docker images are built and published when a tag starting with `v` is pushed
+to the repo. Example:
+
+```shell
+git tag  # List existing tags, pick the next one
+git tag -a v1.0.3 -m"Tagging docker image"  # create new tag
+git push --tags
+```
+
+### Manually
+
+#### GitHub Action image (base)
 
 From the root of the repo:
 
@@ -38,7 +55,7 @@ docker build -t ghcr.io/statisticsnorway/docker-rpython-base:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-base:1.0
 ```
 
-### Dev image
+#### Dev image
 
 From the root of the repo:
 

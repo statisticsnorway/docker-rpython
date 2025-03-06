@@ -29,7 +29,8 @@ RUN R -e "remotes::install_github(c(\
    'statisticsnorway/ssb-fellesr' \
    ))"   
 
-RUN pipx ensurepath \
-    && pipx install poetry && pipx inject poetry poetry-plugin-export \
+ENV PATH=/root/.local/bin:$PATH
+
+RUN pipx install poetry && pipx inject poetry poetry-plugin-export \
     && pipx install nox && pipx inject nox nox-poetry
 

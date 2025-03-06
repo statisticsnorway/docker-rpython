@@ -50,7 +50,7 @@ git push --tags
 From the root of the repo:
 
 ```shell
-cd docker-base
+cd base
 docker build -t ghcr.io/statisticsnorway/docker-rpython-base:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-base:1.0
 ```
@@ -60,7 +60,16 @@ docker push ghcr.io/statisticsnorway/docker-rpython-base:1.0
 From the root of the repo:
 
 ```shell
-cd docker-dev
+cd dev
 docker build -t ghcr.io/statisticsnorway/docker-rpython-dev:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-dev:1.0
+```
+
+### Authenticate with GitHub Container Registry
+
+Your PATH must have the `read:packages` scope.
+
+```shell
+export CR_PAT=<YourPAT>
+echo $CR_PAT | docker login ghcr.io -u USERNAME --password-stdin
 ```

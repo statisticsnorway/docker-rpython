@@ -12,7 +12,6 @@ RUN apt-get update \
         pipx \
         python3-dev \
         python3-pip \
-        python3-poetry \
         python3-venv \
         r-cran-dplyr \
         r-cran-gausssuppression \
@@ -30,5 +29,7 @@ RUN R -e "remotes::install_github(c(\
    'statisticsnorway/ssb-fellesr' \
    ))"   
 
-RUN pipx ensurepath && pipx install nox && pipx inject nox nox-poetry
+RUN pipx ensurepath \
+    && pipx install poetry && pipx inject poetry poetry-plugin-export \
+    && pipx install nox && pipx inject nox nox-poetry
 

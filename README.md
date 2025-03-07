@@ -2,8 +2,11 @@
 Repo for creating a docker images containing both python and R, for use in CI and as
 dev containers.
 
+The images contains tools like poetry and nox, so no need to install them in the
+CI pipeline.
+
 ## Installed R-packages
-The following R-packages with their dependencies are installed in the conatainer image:
+The following R-packages with their dependencies are installed in the base container image:
 
 From CRAN:
 * dplyr
@@ -17,6 +20,13 @@ From CRAN:
 From GitHub:
 * ssb-metodebiblioteket
 * ssb-ssb-fellesr
+
+## Versions
+
+ - python 3.12
+ - R 4.4
+ - poetry 2.1
+ - nox 2025.2.9
 
 ## Releases
 
@@ -67,7 +77,7 @@ docker push ghcr.io/statisticsnorway/docker-rpython-dev:1.0
 
 ### Authenticate with GitHub Container Registry
 
-Your PATH must have the `read:packages` scope.
+Your PAT must have the `read:packages` scope.
 
 ```shell
 export CR_PAT=<YourPAT>

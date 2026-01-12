@@ -25,8 +25,8 @@ From GitHub:
 
  - python 3.12
  - R 4.4
- - poetry 2.1
- - nox 2025.2.9
+ - poetry 2.2.1
+ - nox 2025.11.12
 
 ## Releases
 
@@ -55,13 +55,19 @@ git push --tags
 
 ### Manually
 
+You need to set the environment variable GITHUB_PAT before running the commands.
+
+```shell
+export GITHUB_PAT="ghp_yourPersonalAccessTokenHere"
+```
+
 #### GitHub Action image (base)
 
 From the root of the repo:
 
 ```shell
 cd base
-docker build -t ghcr.io/statisticsnorway/docker-rpython-base:1.0 .
+docker build --secret id=github_pat,env=GITHUB_PAT -t ghcr.io/statisticsnorway/docker-rpython-base:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-base:1.0
 ```
 
@@ -71,7 +77,7 @@ From the root of the repo:
 
 ```shell
 cd dev
-docker build -t ghcr.io/statisticsnorway/docker-rpython-dev:1.0 .
+docker build --secret id=github_pat,env=GITHUB_PAT -t ghcr.io/statisticsnorway/docker-rpython-dev:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-dev:1.0
 ```
 

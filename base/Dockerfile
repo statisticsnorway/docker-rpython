@@ -1,4 +1,6 @@
-FROM rocker/r2u:24.04
+#syntax=docker/dockerfile:1
+
+FROM docker.io/rocker/r2u:24.04
 
 LABEL org.opencontainers.image.source=https://github.com/statisticsnorway/docker-rpython
 LABEL org.opencontainers.image.description="Container for running both python and R, based on r2u."
@@ -24,10 +26,15 @@ RUN apt-get update \
     && apt-get purge -y --auto-remove \
     && rm -rf /var/lib/apt/lists/*
 
-RUN R -e "remotes::install_github(c(\
-   'statisticsnorway/ssb-metodebiblioteket', \
-   'statisticsnorway/ssb-fellesr' \
-   ))"   
+# Copy the R script that installs GitHub packages
+COPY install_github_r_packages.R /tmp/install_github_r_packages.R
+
+# Use a secret mount so the GITHUB_TOKEN is available only at build time
+RUN --mount=type=secret,id=github_pat \
+    bash -eux -c "\
+      export GITHUB_PAT=$(cat /run/secrets/github_pat) && \
+      Rscript /tmp/install_github_r_packages.R \
+    "
 
 ENV PATH=/root/.local/bin:$PATH
 

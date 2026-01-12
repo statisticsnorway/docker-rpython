@@ -77,7 +77,7 @@ From the root of the repo:
 
 ```shell
 cd dev
-docker build --secret id=github_pat,env=GITHUB_PAT -t ghcr.io/statisticsnorway/docker-rpython-dev:1.0 .
+docker build -t ghcr.io/statisticsnorway/docker-rpython-dev:1.0 .
 docker push ghcr.io/statisticsnorway/docker-rpython-dev:1.0
 ```
 

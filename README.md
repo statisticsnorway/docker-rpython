@@ -25,8 +25,8 @@ From GitHub:
 
  - python 3.12
  - R 4.4
- - poetry 2.2.1
- - nox 2025.11.12
+ - poetry 2.3.4
+ - nox 2026.4.10
 
 ## Releases
 
@@ -71,7 +71,17 @@ docker build --secret id=github_pat,env=GITHUB_PAT -t ghcr.io/statisticsnorway/d
 docker push ghcr.io/statisticsnorway/docker-rpython-base:1.0
 ```
 
+If using podman:
+
+```shell
+printf "%s" "$GITHUB_PAT" > pat.txt
+podman build --secret id=github_pat,src=pat.txt -t ghcr.io/statisticsnorway/docker-rpython-base:1.0 .
+```
+
 #### Dev image
+
+The dev image depends on the base image.
+Make sure to update the Docker file for the dev image to use new base images.
 
 From the root of the repo:
 
